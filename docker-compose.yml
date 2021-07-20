@@ -3,13 +3,23 @@ version: "3"
 services: 
   node-app:
     build: .
-    # env_file: 
-    #   - ./src/config/.env
     volumes: 
       - ./src:/usr/local/app
       - exclude:/usr/local/app/node_modules
-
+    env_file: 
+      - ./.env
+    depends_on: 
+      - "mongo"
+  mongo:
+    image: mongo
+    volumes:
+      - mongo:/data/db 
+    env_file: 
+      - ./.env
 volumes: 
   exclude:
-
+  mongo:
+networks: 
+  default:
+    name: internal 
   
