@@ -1,0 +1,15 @@
+version: "3"
+
+services: 
+  node-app:
+    build: .
+    # env_file: 
+    #   - ./src/config/.env
+    volumes: 
+      - ./src:/usr/local/app
+      - exclude:/usr/local/app/node_modules
+
+volumes: 
+  exclude:
+
+  
