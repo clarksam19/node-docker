@@ -1,17 +1,20 @@
 const express = require('express');
 
 const controller = require('../controllers/controller');
+const authorize = require('../middleware/userMiddleware');
 
 const router = express.Router();
 
-router.route('/')
-  .get(controller.getAllEntries)
-  .post(controller.addOneEntry);
+router
+  .route('/')
+  .get(authorize, controller.getAllEntries)
+  .post(authorize, controller.addOneEntry);
 
-router.route('/:id')
-  .get(controller.getOneEntry)
-  .put(controller.updateOneEntry)
-  .patch(controller.updateOneEntry)
-  .delete(controller.deleteOneEntry);
+router
+  .route('/:id')
+  .get(authorize, controller.getOneEntry)
+  .put(authorize, controller.updateOneEntry)
+  .patch(authorize, controller.updateOneEntry)
+  .delete(authorize, controller.deleteOneEntry);
 
 module.exports = router;
