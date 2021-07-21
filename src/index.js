@@ -8,15 +8,18 @@ const mongoURL = `mongodb://${config.MONGO_USER}:${config.MONGO_PASSWORD}@` +
 const app = express();
 
 const router = require('./routes/route');
+const userRouter = require('./routes/userRoute');
 
 app.use(express.json());
 app.use('/entries', router);
+app.use('/users', userRouter);
 
 mongoose
   .connect(mongoURL,
     { useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
+      useCreateIndex: true
     }
   )
   .then(() => console.log('DB connection success'))

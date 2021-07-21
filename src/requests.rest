@@ -32,3 +32,23 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/entries/60f76bfbc0010a00d5b34650 HTTP/1/1
+
+###
+
+POST http://localhost:3000/users/signup HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "foobar",
+  "password": "isthishashed?"
+}
+
+###
+
+POST http://localhost:3000/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "foobar",
+  "password": "isthishashed?"
+}
